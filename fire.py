@@ -6,6 +6,7 @@ class Fire:
         self.x = x + 6
         self.y = y + 7
         self.speed = speed
+        self.is_alive = True
 
     def update(self):
         self.x += self.speed
