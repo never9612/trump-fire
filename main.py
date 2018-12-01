@@ -1,4 +1,5 @@
 import pyxel
+import math
 import trump
 import fire
 
@@ -33,6 +34,9 @@ class App:
         pyxel.cls(0)
         self.trump.draw()
         self.fires_draw()
+
+    def distance(self, x1, y1, x2, y2):
+        return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
     def input_shoot_fire(self, x, y, speed):
         if pyxel.btnp(pyxel.KEY_F):
