@@ -15,8 +15,8 @@ class Trump:
 
         if self.y <= 0:
             self.y = 0
-        elif self.y >= pyxel.height:
-            self.y = pyxel.height
+        elif self.y >= pyxel.height - 16:
+            self.y = pyxel.height - 16
 
     def draw(self):
         pyxel.blt(self.x, self.y, 0, 0, 0, 16, 16, 0)
