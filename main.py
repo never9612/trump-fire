@@ -19,6 +19,7 @@ FIRE_SPEED = 2
 class App:
     def __init__(self):
         pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT)
+        pyxel.load('assets/contents.pyxel')
 
         self.fires = []
         self.trump = trump.Trump(TRUMP_X, TRUMP_Y, TRUMP_SPEED)

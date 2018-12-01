@@ -19,4 +19,4 @@ class Trump:
             self.y = pyxel.height
 
     def draw(self):
-        pyxel.circ(self.x, self.y, 4, 7)
+        pyxel.blt(self.x, self.y, 0, 0, 0, 16, 16, 0)
