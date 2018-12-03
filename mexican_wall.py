@@ -1,28 +1,33 @@
+"""
+メキシコの壁
+"""
 import pyxel
 
 
 class MexicanWall:
 
   def __init__(self, x, y=20):
+
+    ## 壁の位置
     self.x = x
     self.y = y
-    self.health = 50
+
+    ## 壁の状態
+    self.health = 100
     self.visible = True
 
-  def update(self, score):
+
+  def update(self, damage):
 
     ## 壁の体力
-    if self.health + score > 100:
-      self.health = 100
-    elif self.health - score < 0:
-      self.health = 0
-    else:
-      self.health += score
+    if damage < 0:
+      self.health += damage
 
     ## 表示の有無
     if self.health <= 0:
       self.visible = False
-  
+
+
   def draw(self):
 
     ## VisibleがTrueなら表示
