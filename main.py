@@ -5,13 +5,10 @@ import trump
 import fire
 import flower
 import enemy
-<<<<<<< HEAD
 import mexico_status
 import mexican_wall
 import mexican_people
 import transfer_bar
-=======
->>>>>>> 3d8a2d0d1a14d5b83fa543116d0259c32654286f
 
 
 # 定数
@@ -36,7 +33,6 @@ FIELD_HEIGHT = FLOWER_SIZE * FLOWERS_ROW - FLOWER_SIZE
 
 OBAMA_X = FIELD_X
 OBAMA_Y = FIELD_Y
-<<<<<<< HEAD
 OBAMA_MOVE_INTERVAL = 100
 
 HILLARY_X = FIELD_X
@@ -46,13 +42,6 @@ HILLARY_MOVE_INTERVAL = 100
 WALL_POSITION = [35, 40, 45, 50]
 PEOPLE_POSITION = [30, 40, 50, 60, 70, 80]
 MP_NUM = 6
-=======
-OBAMA_MOVE_INTERVAL = 10
-
-HILLARY_X = FIELD_X
-HILLARY_Y = FIELD_X
-HILLARY_MOVE_INTERVAL = 10
->>>>>>> 3d8a2d0d1a14d5b83fa543116d0259c32654286f
 
 
 class App:
@@ -69,20 +58,16 @@ class App:
         self.hillary = enemy.Hillary(
             HILLARY_X, HILLARY_Y, HILLARY_MOVE_INTERVAL, FIELD_X, FIELD_Y, FIELD_WIDTH, FIELD_HEIGHT
         )
-<<<<<<< HEAD
         # メキシコ
         self.mStatus = mexico_status.MexicoStatus()
         self.mWall = [mexican_wall.MexicanWall(x=n) for n in WALL_POSITION]
         self.mPeople = [mexican_people.MexicanPeople(
             0, n) for n in PEOPLE_POSITION]
         self.tBar = transfer_bar.TransferBar()
-=======
->>>>>>> 3d8a2d0d1a14d5b83fa543116d0259c32654286f
 
         pyxel.run(self.update, self.draw)
 
     def update(self):
-<<<<<<< HEAD
         # 火の発射
         self.shoot_fire(self.trump.x, self.trump.y, FIRE_SPEED)
         # 火と花の当たり判定
@@ -98,15 +83,6 @@ class App:
         # 花更新
         self.flowers_update()
         # 火更新
-=======
-        self.shoot_fire(self.trump.x, self.trump.y, FIRE_SPEED)
-        self.check_fire_hit_flower()
-        self.plant_flower(self.obama.x, self.obama.y)
-        self.trump.update()
-        self.obama.update()
-        self.hillary.update()
-        self.flowers_update()
->>>>>>> 3d8a2d0d1a14d5b83fa543116d0259c32654286f
         self.fires_update()
 
         # メキシコ
@@ -126,7 +102,6 @@ class App:
         self.flowers_draw()
         self.obama.draw()
         self.hillary.draw()
-<<<<<<< HEAD
 
         # メキシコ
         for i in range(len(self.mWall)):
@@ -134,8 +109,6 @@ class App:
         for i in range(MP_NUM):
             self.mPeople[i].draw()
         self.tBar.draw()
-=======
->>>>>>> 3d8a2d0d1a14d5b83fa543116d0259c32654286f
 
     def distance(self, x1, y1, x2, y2):
         return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
