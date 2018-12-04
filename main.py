@@ -5,6 +5,10 @@ import trump
 import fire
 import flower
 import enemy
+import mexico_status
+import mexican_wall
+import mexican_people
+import transfer_bar
 
 
 # 定数
@@ -29,11 +33,15 @@ FIELD_HEIGHT = FLOWER_SIZE * FLOWERS_ROW - FLOWER_SIZE
 
 OBAMA_X = FIELD_X
 OBAMA_Y = FIELD_Y
-OBAMA_MOVE_INTERVAL = 10
+OBAMA_MOVE_INTERVAL = 100
 
 HILLARY_X = FIELD_X
 HILLARY_Y = FIELD_X
-HILLARY_MOVE_INTERVAL = 10
+HILLARY_MOVE_INTERVAL = 100
+
+WALL_POSITION = [35, 40, 45, 50]
+PEOPLE_POSITION = [30, 40, 50, 60, 70, 80]
+MP_NUM = 6
 
 
 class App:
@@ -41,6 +49,7 @@ class App:
         pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT)
         pyxel.load('assets/contents.pyxel')
 
+        # 民主党の花
         self.fires = []
         self.flowers = []
         self.trump = trump.Trump(TRUMP_X, TRUMP_Y, TRUMP_SPEED)
@@ -49,26 +58,57 @@ class App:
         self.hillary = enemy.Hillary(
             HILLARY_X, HILLARY_Y, HILLARY_MOVE_INTERVAL, FIELD_X, FIELD_Y, FIELD_WIDTH, FIELD_HEIGHT
         )
+        # メキシコ
+        self.mStatus = mexico_status.MexicoStatus()
+        self.mWall = [mexican_wall.MexicanWall(x=n) for n in WALL_POSITION]
+        self.mPeople = [mexican_people.MexicanPeople(
+            0, n) for n in PEOPLE_POSITION]
+        self.tBar = transfer_bar.TransferBar()
 
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        # 火の発射
         self.shoot_fire(self.trump.x, self.trump.y, FIRE_SPEED)
+        # 火と花の当たり判定
         self.check_fire_hit_flower()
+        # 花を植える
         self.plant_flower(self.obama.x, self.obama.y)
+        self.plant_flower(self.hillary.x, self.hillary.y)
+        # トランプ更新
         self.trump.update()
+        # オバマ・ヒラリー更新
         self.obama.update()
         self.hillary.update()
+        # 花更新
         self.flowers_update()
+        # 火更新
         self.fires_update()
+
+        # メキシコ
+        self.mWall[self.mStatus.wall_position].update(damage=self.tBar.value)
+        self.mStatus.update(
+            w_health=self.mWall[self.mStatus.wall_position].health)
+        for i in range(MP_NUM):
+            self.mPeople[i].update(xIdx=self.mStatus.people_position)
+
+        self.tBar.update()
 
     def draw(self):
         pyxel.cls(0)
+        # トランプ・火・花・オバマ・ヒラリー
         self.trump.draw()
         self.fires_draw()
         self.flowers_draw()
         self.obama.draw()
         self.hillary.draw()
+
+        # メキシコ
+        for i in range(len(self.mWall)):
+            self.mWall[i].draw()
+        for i in range(MP_NUM):
+            self.mPeople[i].draw()
+        self.tBar.draw()
 
     def distance(self, x1, y1, x2, y2):
         return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
