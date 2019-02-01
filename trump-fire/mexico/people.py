@@ -1,7 +1,7 @@
 import pyxel
 
 
-class MexicanPeople:
+class MexicoPeople:
 
   def __init__(self, xIdx, y):
 

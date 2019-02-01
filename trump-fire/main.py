@@ -1,14 +1,12 @@
 import pyxel
 import math
 import random
-import trump
-import fire
-import flower
-import enemy
-import mexico_status
-import mexican_wall
-import mexican_people
-import transfer_bar
+from trump import trump, fire
+from enemy import enemy, flower, boss_flower
+from mexico.status import MexicoStatus
+from mexico.people import MexicoPeople
+from mexico.wall import MexicoWall
+from transfer.bar import TransferBar
 
 
 # 定数
@@ -58,12 +56,14 @@ class App:
         self.hillary = enemy.Hillary(
             HILLARY_X, HILLARY_Y, HILLARY_MOVE_INTERVAL, FIELD_X, FIELD_Y, FIELD_WIDTH, FIELD_HEIGHT
         )
+
         # メキシコ
-        self.mStatus = mexico_status.MexicoStatus()
-        self.mWall = [mexican_wall.MexicanWall(x=n) for n in WALL_POSITION]
-        self.mPeople = [mexican_people.MexicanPeople(
-            0, n) for n in PEOPLE_POSITION]
-        self.tBar = transfer_bar.TransferBar()
+        self.mStatus = MexicoStatus()
+        self.mWall = [MexicoWall(x=n) for n in WALL_POSITION]
+        self.mPeople = [MexicoPeople(0, n) for n in PEOPLE_POSITION]
+
+        # 貿易摩擦
+        self.tBar = TransferBar()
 
         pyxel.run(self.update, self.draw)
 

@@ -8,7 +8,6 @@ class TransferBar:
     ## バーの量
     self.value = 0
   
-
   def update(self):
 
     ## 標準で減算
@@ -24,7 +23,6 @@ class TransferBar:
     elif self.value > 25:
       self.value = 25
     
-  
   def draw(self):
 
     ## バーの色を決定

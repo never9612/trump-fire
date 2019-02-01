@@ -4,7 +4,7 @@
 import pyxel
 
 
-class MexicanWall:
+class MexicoWall:
 
   def __init__(self, x, y=20):
 
