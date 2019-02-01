@@ -8,6 +8,12 @@ class TransferBar:
     ## バーの量
     self.value = 0
   
+  def reset(self):
+    """
+    貿易収支のステータスを外部からリセットするときに使用
+    """
+    self.value = 0
+  
   def update(self):
 
     ## 標準で減算

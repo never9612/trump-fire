@@ -17,16 +17,19 @@ class MexicoWall:
     self.visible = True
 
 
-  def update(self, damage):
+  def update(self, damage, t_bar=None):
 
     ## 壁の体力
     if damage < 0:
       self.health += damage
 
-    ## 表示の有無
+    # 表示の有無
     if self.health <= 0:
       self.visible = False
 
+      # 貿易収支メーターをリセット
+      if t_bar is not None:
+        t_bar.reset()
 
   def draw(self):
 

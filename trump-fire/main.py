@@ -85,13 +85,18 @@ class App:
         # 火更新
         self.fires_update()
 
-        # メキシコ
-        self.mWall[self.mStatus.wall_position].update(damage=self.tBar.value)
+        # メキシコの壁を更新
+        self.mWall[self.mStatus.wall_position].update(damage=self.tBar.value, t_bar=self.tBar)
+
+        # メキシコステータスのアップデート
         self.mStatus.update(
             w_health=self.mWall[self.mStatus.wall_position].health)
+
+        # メキシコ人のアップデート
         for i in range(MP_NUM):
             self.mPeople[i].update(xIdx=self.mStatus.people_position)
 
+        # 貿易収支のアップデート
         self.tBar.update()
 
     def draw(self):
