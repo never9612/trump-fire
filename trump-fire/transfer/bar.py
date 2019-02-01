@@ -25,8 +25,8 @@ class TransferBar:
     
   def draw(self):
 
-    ## バーの色を決定
+    # バーの色: 正なら赤、負なら青
     barColor = 8 if self.value >= 0 else 12
 
-    ## バーを描画
+    # バーを描画
     pyxel.rect(35, 110, self.value+35, 115, barColor)
