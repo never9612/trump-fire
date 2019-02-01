@@ -60,7 +60,7 @@ class App:
         # メキシコ
         self.mStatus = MexicoStatus()
         self.mWall = [MexicoWall(x=n) for n in WALL_POSITION]
-        self.mPeople = [MexicoPeople(0, n) for n in PEOPLE_POSITION]
+        self.mPeople = [MexicoPeople(0, n, attack=False if i % 2 == 0 else True) for i, n in enumerate(PEOPLE_POSITION)]
 
         # 貿易摩擦
         self.tBar = TransferBar()
